@@ -1,0 +1,273 @@
+/* Paleta de colores */
+:root {
+    --color-primary: #880D1E;
+    --color-accent: #DD2D4A;
+    --color-text-light: #F49CBB;
+    --color-text-dark: #F26A8D;
+    --color-white: #fff;
+    --color-gray: #ccc;
+}
+
+/* Estilos de la barra principal */
+.header {
+    background-color: var(--color-primary);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header.scrolled {
+    padding: 0.5rem 0;
+    transition: padding 0.3s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Primera fila (logo, buscador, íconos) */
+.header-top {
+    padding-bottom: 0.5rem;
+    border-bottom: none;
+}
+
+.header-top-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centramos todo el contenido */
+    gap: 2rem;
+}
+
+/* Logo */
+.logo-link {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-light);
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-link:hover .logo {
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    margin-right: 0.5rem;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+    max-width: 500px; /* Ancho de la barra de búsqueda */
+    margin: 0; /* Sin margen para que se vea más compacto */
+    border: 1px solid var(--color-gray);
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #333;
+    width: 100%;
+    padding-right: 1rem;
+    font-size: 1rem;
+}
+
+.search-bar input::placeholder {
+    color: var(--color-gray);
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Íconos de usuario y carrito */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--color-text-light);
+    flex-shrink: 0;
+}
+
+.icon-link {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-link:hover {
+    color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+/* Menú desplegable de perfil */
+.profile-dropdown-container {
+    position: relative;
+}
+
+.profile-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% - 10px);
+    right: 0;
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-width: 150px;
+    padding: 0.5rem 0;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.profile-dropdown-menu.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-dropdown-menu a {
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--color-text-light);
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+}
+
+/* Contador del carrito */
+.cart-count {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 0.7rem;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Segunda fila (secciones) */
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 500px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-button {
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    display: block;
+    transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.nav-button:hover {
+    color: var(--color-accent);
+    transform: scale(1.05);
+    letter-spacing: 1px;
+}
+
+/* Menú de hamburguesa (móvil) */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--color-text-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-primary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.dropdown-menu.active {
+    display: flex;
+}
+
+.dropdown-menu a {
+    padding: 1rem 2rem;
+    text-decoration: none;
+    color: var(--color-text-light);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .header-bottom, .header-icons, .search-bar {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
+
