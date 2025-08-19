@@ -1,125 +1,277 @@
 /* Paleta de colores */
 :root {
-    --color-primary: #880D1E;
-    --color-accent: #DD2D4A;
-    --color-text-light: #F49CBB;
-    --color-text-dark: #F26A8D;
+    --color-primary: #880D1E; /* Rojo oscuro */
+    --color-accent: #DD2D4A; /* Rojo acento */
+    --color-text-light: #F49CBB; /* Rosa claro */
+    --color-text-dark: #F26A8D; /* Rosa principal/títulos */
     --color-white: #fff;
     --color-gray: #ccc;
+    --color-dark-overlay: rgba(0, 0, 0, 0.6); /* Overlay oscuro para contraste del texto */
+    --color-light-overlay: rgba(255, 255, 255, 0.2); /* Overlay claro para efectos */
 }
 
+/* Contenedor principal del carrusel */
 .carousel-container {
-    width: 100%;
-    max-width: 1200px; /* Ancho máximo para el carrusel */
-    margin: 0 auto; /* Centra el carrusel */
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    max-width: 100vw; /* Asegura que no exceda el ancho de la ventana gráfica */
+    margin: 0 auto; /* Elimina márgenes laterales para que ocupe todo el ancho */
     overflow: hidden;
     position: relative;
-    height: 494px; /* Altura de las imágenes */
-    align-items: center;
+    height: 550px; /* Altura para un impacto visual mayor, ajusta si es necesario */
+    border-radius: 0; /* Elimina los bordes redondeados para un look de borde a borde */
+    box-shadow: none; /* Elimina la sombra para un look más "plano" o integrado */
 }
 
+/* Wrapper de los slides */
 .carousel-wrapper {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de transición más suave */
     height: 100%;
     position: relative;
 }
 
+/* Cada slide */
 .carousel-slide {
     min-width: 100%;
+    width: 100% !important;
     height: 100%;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    display: flex; /* Flex para el contenido de texto e imagen */
+    align-items: center; /* Centra verticalmente ambos contenedores */
+    justify-content: center;
+    text-align: center;
+    /* Efecto de pseudo-elemento para un overlay sutil */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, var(--color-dark-overlay) 0%, transparent 50%, var(--color-dark-overlay) 100%);
+        z-index: 1;
+        opacity: 0.7; /* Opacidad del overlay */
+    }
 }
 
-.carousel-slide img {
+.carousel-image-container {
+    position: absolute; /* Permite que la imagen ocupe todo el espacio de fondo */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    z-index: 0; /* Asegura que la imagen esté detrás del contenido de texto */
 }
 
-.carousel-content {
-    align-items: center;
-    padding: 0 50px;
+.carousel-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+    filter: brightness(0.8); /* Oscurece un poco la imagen para el contraste del texto */
+}
+
+/* Contenido del carrusel (título, párrafo, botón) */
+.carousel-text-content { /* Renombrado de .carousel-content a .carousel-text-content */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea el texto a la izquierda */
+    padding: 0 80px; /* Más padding para mayor espacio */
     text-align: left;
     color: var(--color-white);
-    z-index: 2;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%; /* Ocupa la mitad del espacio */
+    z-index: 2; /* Asegura que el texto esté por encima de la imagen y el overlay */
+    position: relative; /* Cambiado de absolute a relative para flujo normal si se necesitara */
+    max-width: 60%; /* Ocupa una porción del ancho para que el texto no sea demasiado largo */
+    box-sizing: border-box; /* Incluye padding en el ancho */
 }
 
-.carousel-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-primary);
+.carousel-text-content h2 {
+    font-size: 3.2rem; /* Título más grande y con más impacto */
+    margin-bottom: 0.8rem;
+    color: var(--color-text-dark); /* Un color de tu paleta para el título */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra de texto para legibilidad */
+    line-height: 1.2; /* Espaciado de línea para títulos largos */
 }
 
-.carousel-content p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    color: var(--color-gray);
+.carousel-text-content p {
+    font-size: 1.4rem; /* Párrafo más grande */
+    margin-bottom: 2rem; /* Más espacio debajo del párrafo */
+    color: var(--color-text-light); /* Un color más claro para el párrafo */
+    line-height: 1.6;
 }
 
 .carousel-button {
     display: inline-block;
-    padding: 0.75rem 2rem;
+    padding: 1rem 2.5rem; /* Botón más grande */
     background-color: var(--color-accent);
     color: var(--color-white);
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 1.1rem; /* Texto del botón más legible */
+    transition: all 0.3s ease-in-out; /* Transición para todos los cambios */
+    letter-spacing: 0.05em; /* Espaciado entre letras para un toque moderno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
 }
 
 .carousel-button:hover {
-    background-color: #f26a8d;
+    background-color: var(--color-primary); /* Cambia al color primario en hover */
+    transform: translateY(-3px) scale(1.02); /* Pequeño levantamiento y zoom en hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* Flechas de navegación */
 .carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--color-dark-overlay); /* Usa la variable para el overlay oscuro */
     color: var(--color-white);
     border: none;
-    padding: 1rem;
+    padding: 1.2rem 1.4rem; /* Aumenta el padding para hacerlas más grandes */
     cursor: pointer;
     z-index: 5;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Icono más grande */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-arrow:hover {
+    background-color: var(--color-primary); /* Hover con color primario */
+    transform: translateY(-50%) scale(1.1); /* Zoom sutil en hover */
 }
 
 .carousel-arrow.left-arrow {
-    left: 2rem;
+    left: 3rem; /* Más separado del borde */
 }
 
 .carousel-arrow.right-arrow {
-    right: 2rem;
+    right: 3rem; /* Más separado del borde */
 }
 
+/* Puntos de navegación (dots) */
 .carousel-dots {
     position: absolute;
-    bottom: 2rem;
-    left: 50px;
+    bottom: 3rem; /* Más arriba del borde inferior */
+    left: 50%; /* Centra los puntos */
+    transform: translateX(-50%); /* Ajusta para centrar perfectamente */
     display: flex;
-    gap: 0.5rem;
+    gap: 0.7rem; /* Más espacio entre los puntos */
     z-index: 3;
+    background: var(--color-light-overlay); /* Fondo semitransparente para los puntos */
+    padding: 0.7rem 1.2rem;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
-    background: rgba(255, 255, 255, 0.5);
+    width: 14px; /* Puntos más grandes */
+    height: 14px;
+    background: rgba(255, 255, 255, 0.6); /* Color inicial de los puntos */
     border-radius: 50%;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .dot.active {
-    background: var(--color-accent);
+    background: var(--color-accent); /* Color acento para el punto activo */
+    transform: scale(1.2); /* Pequeño zoom para el punto activo */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Borde luminoso para el punto activo */
+}
+
+/* Contenido principal (si aplica a lo de tu carrusel) */
+.main-content {
+    margin-top: 0; /* Asegura que el contenido principal no empuje el carrusel hacia abajo */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 400px; /* Reduce la altura en pantallas más pequeñas */
+    }
+
+    .carousel-text-content {
+        padding: 0 30px;
+        max-width: 80%; /* Más ancho en móviles */
+    }
+
+    .carousel-text-content h2 {
+        font-size: 2rem; /* Reduce el tamaño del título */
+    }
+
+    .carousel-text-content p {
+        font-size: 1rem; /* Reduce el tamaño del párrafo */
+        margin-bottom: 1rem;
+    }
+
+    .carousel-button {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .carousel-arrow {
+        padding: 0.8rem 1rem;
+        font-size: 1.2rem;
+        background: rgba(0, 0, 0, 0.4); /* Flechas un poco más transparentes */
+    }
+
+    .carousel-arrow.left-arrow {
+        left: 1rem;
+    }
+
+    .carousel-arrow.right-arrow {
+        right: 1rem;
+    }
+
+    .carousel-dots {
+        bottom: 1.5rem;
+        gap: 0.4rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 300px; /* Aún más pequeño para móviles muy estrechos */
+        border-radius: 0;
+    }
+
+    .carousel-text-content {
+        padding: 0 20px;
+        max-width: 90%;
+    }
+
+    .carousel-text-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-text-content p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .carousel-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .carousel-arrow {
+        display: none; /* Opcional: Ocultar flechas en pantallas muy pequeñas y depender del swipe */
+    }
+
+    .carousel-dots {
+        bottom: 1rem;
+        gap: 0.3rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
 }
