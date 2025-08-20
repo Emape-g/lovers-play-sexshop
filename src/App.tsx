@@ -6,40 +6,41 @@ import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import NewArrivals from './components/NewArrivals/NewArrivals';
 import MostSearched from './components/MostSearched/MostSearched';
 import Discounts from './components/Discounts/Discounts';
-// Importa otros componentes que tengas, como un Footer
+
+// Páginas nuevas
+import BlogSection from './components/BlogSection/BlogSection';
+import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
   return (
     <Router>
-      <Header /> {/* El Header usualmente va fuera de Routes si es fijo en todas las páginas */}
+      <Header />
 
       <Routes>
         <Route
           path="/"
           element={
             <>
-              {/* Aquí es donde colocas los componentes para la página de inicio */}
               <Carousel />
               <FeaturedProducts />
               <NewArrivals />
               <MostSearched />
+              <BlogSection />
               <Discounts />
+              <ContactForm />
             </>
           }
         />
 
-        {/* Ejemplo: Si tuvieras una página solo para Novedades */}
-        {/* <Route path="/novedades" element={<NewArrivalsPage />} /> */}
+        
 
-        {/* Ejemplo: Si tuvieras una página para un producto específico */}
-        {/* <Route path="/productos/:id" element={<ProductDetailPage />} /> */}
 
+
+        
       </Routes>
-
-      {/* Un Footer también iría fuera de Routes si es fijo */}
-      {/* <Footer /> */}
     </Router>
   );
 }
 
 export default App;
+

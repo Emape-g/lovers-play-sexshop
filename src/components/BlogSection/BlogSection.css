@@ -1,0 +1,36 @@
+.blog-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.blog-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.blog-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
