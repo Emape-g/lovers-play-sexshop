@@ -1,31 +1,24 @@
-import React from 'react';
-import './MostSearched.css'; // <-- Importa su propio CSS
-import { Link } from 'react-router-dom';
+import React from "react";
+import ProductCard from "./../ProductCard/ProductCard";
+import { Link } from "react-router-dom";
 
 const mostSearchedProducts = [
-  { id: 1, name: 'Estimulante Clítoris "Delicia"', price: '$2.000', image: 'https://via.placeholder.com/250x250/F49CBB/FFFFFF?text=Mas+Buscado+1' },
-  { id: 2, name: 'Anillo Vibrador "Juego Intenso"', price: '$1.800', image: 'https://via.placeholder.com/250x250/DD2D4A/FFFFFF?text=Mas+Buscado+2' },
-  { id: 3, name: 'Cremas Aumentadoras "Goce"', price: '$2.500', image: 'https://via.placeholder.com/250x250/880D1E/FFFFFF?text=Mas+Buscado+3' },
-  { id: 4, name: 'Lubricante Térmico "Fuego"', price: '$1.000', image: 'https://via.placeholder.com/250x250/F26A8D/FFFFFF?text=Mas+Buscado+4' },
+  { id: 1, name: 'Vibrador "MaxPlacer"', price: '$5.000', image: 'https://via.placeholder.com/250x250/880D1E/FFFFFF?text=Vibrador' },
+  { id: 2, name: 'Lencería "Secret"', price: '$3.000', image: 'https://via.placeholder.com/250x250/DD2D4A/FFFFFF?text=Lenceria' },
+  { id: 3, name: 'Aceite Aromático', price: '$1.200', image: 'https://via.placeholder.com/250x250/F26A8D/FFFFFF?text=Aceite' },
+  { id: 4, name: 'Juego Erótico "Duo"', price: '$2.400', image: 'https://via.placeholder.com/250x250/F49CBB/FFFFFF?text=Juego' },
 ];
 
-const MostSearched = () => {
+const MostSearched: React.FC = () => {
   return (
-    <section className="most-searched-section"> {/* Misma clase de sección */}
-      <h2 className="section-title">🔍 Los Más Buscados 📈</h2>
+    <section className="products-section">
+      <h2 className="section-title">Más Buscados en Mendoza</h2>
       <div className="products-grid">
-        {mostSearchedProducts.map(product => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p className="product-price">{product.price}</p>
-            <button className="add-to-cart-btn">Añadir al Carrito</button>
-          </div>
+        {mostSearchedProducts.map(p => (
+          <ProductCard key={p.id} name={p.name} price={p.price} image={p.image} />
         ))}
       </div>
-      <Link to="/mas-buscados" className="view-more-btn">
-        Ver todos los Más Buscados
-      </Link>
+      <Link to="/mas-buscados" className="view-more-btn">Ver Más Productos</Link>
     </section>
   );
 };

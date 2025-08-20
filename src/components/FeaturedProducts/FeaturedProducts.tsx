@@ -1,6 +1,7 @@
-import React from 'react';
-import './FeaturedProducts.css'; // Importa su propio CSS
-import { Link } from 'react-router-dom';
+
+import React from "react";
+import ProductCard from "./../ProductCard/ProductCard";
+import { Link } from "react-router-dom";
 
 const featuredItems = [
   { id: 1, name: 'Lencería Exclusiva "Atrevida"', price: '$4.500', image: 'https://via.placeholder.com/250x250/DD2D4A/FFFFFF?text=Destacado+1' },
@@ -9,23 +10,21 @@ const featuredItems = [
   { id: 4, name: 'Aceite de Masajes Afrodisíaco', price: '$1.800', image: 'https://via.placeholder.com/250x250/F49CBB/FFFFFF?text=Destacado+4' },
 ];
 
-const FeaturedProducts = () => {
+const FeaturedProducts: React.FC = () => {
   return (
-    <section className="featured-products-section product-section"> {/* Añadimos 'product-section' para estilos comunes */}
-      <h2 className="section-title">✨ Productos Destacados ✨</h2>
+    <section className="products-section">
+      <h2 className="section-title">Productos Destacados</h2>
       <div className="products-grid">
-        {featuredItems.map(product => (
-          <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p className="product-price">{product.price}</p>
-            <button className="add-to-cart-btn">Añadir al Carrito</button>
-          </div>
+        {featuredItems.map(item => (
+          <ProductCard 
+            key={item.id} 
+            name={item.name} 
+            price={item.price} 
+            image={item.image} 
+          />
         ))}
       </div>
-      <Link to="/destacados" className="view-more-btn">
-        Ver todos los Destacados
-      </Link>
+      <Link to="/destacados" className="view-more-btn">Ver todos los Destacados</Link>
     </section>
   );
 };

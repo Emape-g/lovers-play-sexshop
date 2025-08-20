@@ -1,11 +1,18 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 🎨 Paleta de colores global */
+  --color-primary: #880D1E;      /* Rojo vino */
+  --color-secondary: #DD2D4A;    /* Rojo vibrante */
+  --color-accent: #F26A8D;       /* Rosa fuerte */
+  --color-bg: #f9f9f9;           /* Fondo claro */
+  --color-dark-bg: #242424;      /* Fondo oscuro */
+  --color-card-bg: #ffffff;      /* Fondo tarjetas */
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-border: #e5e5e5;
+
+  font-family: "Poppins", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,29 +20,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  width:100vw;
+  width: 100vw;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Links */
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-secondary);
 }
 
+/* Botones */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -43,27 +54,72 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary);
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--color-secondary);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid var(--color-accent);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Responsive titles */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* 🌙 Modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-dark-bg);
+    color: var(--color-card-bg);
   }
-  a:hover {
-    color: #747bff;
+  a {
+    color: var(--color-accent);
   }
   button {
-    background-color: #f9f9f9;
+    background-color: var(--color-secondary);
   }
+}
+.products-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: var(--color-bg);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.view-more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: var(--color-secondary);
 }
